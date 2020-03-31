@@ -1,0 +1,69 @@
+-- BP 7.1.6 content: ModelClass syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO O_OBJ
+	VALUES ("eb470234-c50d-4174-84f4-f14d9d7e4c05",
+	'Repeater',
+	1,
+	'Repeater',
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO O_NBATTR
+	VALUES ("580a29b5-c246-4ffe-9133-3176091162b3",
+	"eb470234-c50d-4174-84f4-f14d9d7e4c05");
+INSERT INTO O_BATTR
+	VALUES ("580a29b5-c246-4ffe-9133-3176091162b3",
+	"eb470234-c50d-4174-84f4-f14d9d7e4c05");
+INSERT INTO O_ATTR
+	VALUES ("580a29b5-c246-4ffe-9133-3176091162b3",
+	"eb470234-c50d-4174-84f4-f14d9d7e4c05",
+	"00000000-0000-0000-0000-000000000000",
+	'prefix',
+	'The value of this attribute is prepended to the incoming message
+to form the outgoing message.',
+	'',
+	'prefix',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'',
+	'');
+INSERT INTO O_NBATTR
+	VALUES ("f4bca06a-d233-478e-b002-526b576fb6ee",
+	"eb470234-c50d-4174-84f4-f14d9d7e4c05");
+INSERT INTO O_BATTR
+	VALUES ("f4bca06a-d233-478e-b002-526b576fb6ee",
+	"eb470234-c50d-4174-84f4-f14d9d7e4c05");
+INSERT INTO O_ATTR
+	VALUES ("f4bca06a-d233-478e-b002-526b576fb6ee",
+	"eb470234-c50d-4174-84f4-f14d9d7e4c05",
+	"580a29b5-c246-4ffe-9133-3176091162b3",
+	'current_state',
+	'',
+	'',
+	'current_state',
+	0,
+	"ba5eda7a-def5-0000-0000-000000000006",
+	'',
+	'');
+INSERT INTO O_ID
+	VALUES (0,
+	"eb470234-c50d-4174-84f4-f14d9d7e4c05");
+INSERT INTO O_ID
+	VALUES (1,
+	"eb470234-c50d-4174-84f4-f14d9d7e4c05");
+INSERT INTO O_ID
+	VALUES (2,
+	"eb470234-c50d-4174-84f4-f14d9d7e4c05");
+INSERT INTO PE_PE
+	VALUES ("eb470234-c50d-4174-84f4-f14d9d7e4c05",
+	1,
+	"bd675ded-5579-4e3a-8b29-84f15899ba8f",
+	"00000000-0000-0000-0000-000000000000",
+	4);
+INSERT INTO EP_PKG_PROXY
+	VALUES ("bd675ded-5579-4e3a-8b29-84f15899ba8f",
+	"00000000-0000-0000-0000-000000000000",
+	"a957288a-71d5-4b53-a3b8-13efb5250eee",
+	'Classes',
+	'',
+	0,
+	'../Classes.xtuml');

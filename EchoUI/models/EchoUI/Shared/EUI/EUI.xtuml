@@ -1,0 +1,63 @@
+-- BP 7.1.6 content: Interface syschar: 3 persistence-version: 7.1.6
+
+INSERT INTO C_I
+	VALUES ("268d5cb4-e2e2-42a0-a9b9-9feb28069a60",
+	"00000000-0000-0000-0000-000000000000",
+	'EUI',
+	'');
+INSERT INTO C_EP
+	VALUES ("77db496f-4adc-4e19-a9aa-287a3f29181b",
+	"268d5cb4-e2e2-42a0-a9b9-9feb28069a60",
+	-1,
+	'Request',
+	'');
+INSERT INTO C_AS
+	VALUES ("77db496f-4adc-4e19-a9aa-287a3f29181b",
+	'Request',
+	'',
+	0,
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_PP
+	VALUES ("468fdc14-9b30-4bae-9ff4-37b82e1ef949",
+	"77db496f-4adc-4e19-a9aa-287a3f29181b",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'msg',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO C_EP
+	VALUES ("5ac10c87-ec37-41bc-8a9e-98b5d6470d34",
+	"268d5cb4-e2e2-42a0-a9b9-9feb28069a60",
+	-1,
+	'Reply',
+	'');
+INSERT INTO C_AS
+	VALUES ("5ac10c87-ec37-41bc-8a9e-98b5d6470d34",
+	'Reply',
+	'',
+	1,
+	"77db496f-4adc-4e19-a9aa-287a3f29181b");
+INSERT INTO C_PP
+	VALUES ("8a861a51-a2b8-4f01-af19-ff9da0aa7732",
+	"5ac10c87-ec37-41bc-8a9e-98b5d6470d34",
+	"ba5eda7a-def5-0000-0000-000000000004",
+	'msg',
+	'',
+	0,
+	'',
+	"00000000-0000-0000-0000-000000000000");
+INSERT INTO PE_PE
+	VALUES ("268d5cb4-e2e2-42a0-a9b9-9feb28069a60",
+	1,
+	"d390d563-d374-4827-8f68-74fe3cbf2831",
+	"00000000-0000-0000-0000-000000000000",
+	6);
+INSERT INTO EP_PKG_PROXY
+	VALUES ("d390d563-d374-4827-8f68-74fe3cbf2831",
+	"37a8ddab-880d-4981-983b-155c4320c958",
+	"37a8ddab-880d-4981-983b-155c4320c958",
+	'Shared',
+	'',
+	0,
+	'../Shared.xtuml');
