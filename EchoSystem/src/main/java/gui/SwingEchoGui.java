@@ -45,6 +45,7 @@ public class SwingEchoGui extends JFrame implements EchoGui {
         sendMessage.addActionListener( new ActionListener() {
         	@Override
         	public void actionPerformed( ActionEvent arg0 ) {
+        		SwingEchoGui.this.sendSignal( new IEUI.Request ( message.getText() ) );
         		confirmation.setText( "Message has been sent." );
         	}
         });
