@@ -16,8 +16,8 @@ public class SwingEchoGui extends JFrame implements EchoGui {
         
     private Gui signalHandler;
     private JButton sendMessage;
-    private JLabel prompt, confirmation;
-    private JTextField message;
+    private JLabel prompt, replyLabel, confirmation;
+    private JTextField message, reply;
 
     public SwingEchoGui(Gui gui) {
         // set signal handler
@@ -26,22 +26,28 @@ public class SwingEchoGui extends JFrame implements EchoGui {
         // Prompt for message
         prompt = new JLabel();
         prompt.setText( "Enter message: " );
-        prompt.setBounds( 10, 10, 200, 100 );
+        prompt.setBounds( 10, 10, 200, 50 );
         this.add( prompt );
-        
-        // Confirmation that message was sent
-        confirmation = new JLabel();
-        confirmation.setBounds( 10, 110, 200, 100 );
-        this.add( confirmation );
         
         // Text field for message
         message = new JTextField();
-        message.setBounds( 150, 50, 200, 30 );
+        message.setBounds( 150, 10, 200, 50 );
         this.add( message );
+        
+        // Label for reply field
+        replyLabel = new JLabel();
+        replyLabel.setText( "Reply: " );
+        replyLabel.setBounds( 10, 80, 200, 50 );
+        this.add( replyLabel );
+        
+        // Text field for reply
+        reply = new JTextField();
+        reply.setBounds( 150, 80, 200, 50 );
+        this.add( reply );
         
         // Button to send message
         sendMessage = new JButton( "Send" );
-        sendMessage.setBounds( 100, 100, 140, 40 );
+        sendMessage.setBounds( 10, 200, 100, 40 );
         sendMessage.addActionListener( new ActionListener() {
         	@Override
         	public void actionPerformed( ActionEvent arg0 ) {
@@ -50,6 +56,12 @@ public class SwingEchoGui extends JFrame implements EchoGui {
         	}
         });
         this.add( sendMessage );
+        
+        // Confirmation that message was sent
+        confirmation = new JLabel();
+        confirmation.setBounds( 150, 200, 200, 50 );
+        this.add( confirmation );
+        
                 
         // Initialize window      
         setTitle("Echo");
@@ -60,7 +72,7 @@ public class SwingEchoGui extends JFrame implements EchoGui {
 
     @Override
     public void Reply( String p_msg ) {
-    	// @@@ TODO: implementation
+    	reply.setText( p_msg );
     }
     
     private void sendSignal(IMessage message) {
