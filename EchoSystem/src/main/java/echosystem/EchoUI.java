@@ -120,7 +120,7 @@ public class EchoUI extends Component<EchoUI> {
     public void listen() throws XtumlException {
         int signal_no = poll();
         switch (signal_no) {
-        case EIUI.SIGNAL_NO_REQUEST:
+        case IEUI.SIGNAL_NO_REQUEST:
         	// @@@ TODO: get message string to pass to Request()
         	final String p_msg = "EchoUI.java TODO";
         	App().Request( p_msg );

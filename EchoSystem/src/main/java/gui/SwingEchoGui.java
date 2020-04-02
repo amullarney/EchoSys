@@ -10,7 +10,6 @@ public class SwingEchoGui extends JFrame implements EchoGui {
     public static final long serialVersionUID = 0;
         
     private Gui signalHandler;
-    private JFrame holdAll = new JFrame();
 
     public SwingEchoGui(Gui gui) {
         // set signal handler
@@ -21,7 +20,6 @@ public class SwingEchoGui extends JFrame implements EchoGui {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-
 
     @Override
     public void Reply( String p_msg ) {
@@ -36,4 +34,5 @@ public class SwingEchoGui extends JFrame implements EchoGui {
     public void display() {
         setVisible(true);
     }
+
 }
