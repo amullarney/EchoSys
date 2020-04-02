@@ -1,6 +1,6 @@
 package echosystem;
 
-import system.echoui.EchoUIApp;
+import echosystem.echoui.EchoUIApp;
 import io.ciera.runtime.summit.application.IApplication;
 import io.ciera.runtime.summit.application.IRunContext;
 import io.ciera.runtime.summit.application.tasks.GenericExecutionTask;
@@ -22,7 +22,7 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.Properties;
-import eui.shared.EIUI;
+import echoui.shared.IEUI;
 
 public class EchoUI extends Component<EchoUI> {
 

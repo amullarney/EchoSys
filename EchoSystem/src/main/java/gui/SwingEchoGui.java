@@ -10,7 +10,7 @@ public class SwingEchoGui extends JFrame implements EchoGui {
     public static final long serialVersionUID = 0;
         
     private Gui signalHandler;
-    private JPanel holdAll = new JPanel();
+    private JFrame holdAll = new JFrame();
 
     public SwingEchoGui(Gui gui) {
         // set signal handler
