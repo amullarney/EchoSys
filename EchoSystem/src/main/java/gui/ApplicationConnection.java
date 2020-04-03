@@ -67,10 +67,7 @@ public class ApplicationConnection extends Thread {
                     // and set the action (run()) to be carried out
                     switch (data.getId()) {
                     case IEUI.SIGNAL_NO_REPLY:
-                        // app.getGuiDisplay().setData((float)Double.parseDouble((String)data.get(0)), Unit.deserialize(data.get(1)));
-                        // @@@ TODO: get data to be sent as message
-                    	final String p_msg = "ApplicationConnection.java TODO";
-                    	app.getGuiDisplay().Reply( p_msg );
+                    	app.getGuiDisplay().Reply( (String) data.get(0) );
                     	break;
                     default:
                         break;

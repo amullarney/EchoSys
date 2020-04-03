@@ -132,9 +132,7 @@ public class EchoUI extends Component<EchoUI> {
         int signal_no = poll();
         switch (signal_no) {
         case IEUI.SIGNAL_NO_REQUEST:
-        	// @@@ TODO: get message string to pass to Request()
-        	final String p_msg = "EchoUI.java TODO";
-        	App().Request( p_msg );
+        	App().Request( (String) requester.message.get(0) );
             break;
         case SOCKET_ERROR:
             LOG().LogFailure("Socket listener shuting down.");
@@ -192,6 +190,7 @@ public class EchoUI extends Component<EchoUI> {
         Socket requestSocket;
         DataOutputStream out;
         BufferedReader in;
+        IMessage message;
         
         private GuiConnection(LOG log) {
         	LOG = log;
@@ -214,8 +213,8 @@ public class EchoUI extends Component<EchoUI> {
                     return SOCKET_ERROR;
                 }
                 //LOG().LogFailure(data);
-                IMessage msg = Message.deserialize(data);
-                return msg.getId();
+                message = Message.deserialize(data);
+                return message.getId();
             } catch ( IOException e ) {
                 if ( e instanceof SocketTimeoutException ) { /* do nothing */ }
                 else throw e;
