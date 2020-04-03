@@ -37,6 +37,17 @@ public class EchoUI extends Component<EchoUI> {
     }
 
     // domain functions
+    public void Reply( final String p_msg ) throws XtumlException {
+        if (requester != null) {
+            try {
+                requester.sendMessage(new IEUI.Reply(p_msg));
+            } catch ( IOException e ) {
+                LOG().LogInfo("Connection lost.");
+                requester.tearDown();
+                requester = null;
+            }
+        }
+    }
 
     
     // relates and unrelates
