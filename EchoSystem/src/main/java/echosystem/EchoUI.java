@@ -33,12 +33,12 @@ public class EchoUI extends Component<EchoUI> {
         super(app, runContext, populationId);
 
         LOG = null;
-        // UIUI = null;  @@@ do we need this one?
+        EchoUIApp = null;
     }
 
     // domain functions
 
-
+    
     // relates and unrelates
 
 

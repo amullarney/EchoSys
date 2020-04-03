@@ -214,8 +214,17 @@ INSERT INTO SPR_PS
 	VALUES ("a57f9ca1-4b4b-46ba-8a2f-2ae9659c99be",
 	'Request',
 	'',
-	'',
-	3,
+	'// If necessary, create the singleton instance of the 
+// the class that handles this message.
+select any repeater from instances of Repeater;
+if ( empty repeater )
+	create object instance repeater of Repeater;
+	repeater.prefix = "Echo: ";
+end if;
+
+// Forward this message, as an event, to the singleton.
+generate Repeater1:RequestRcvd( msg:param.msg ) to repeater;',
+	1,
 	0);
 INSERT INTO C_EP_PROXY
 	VALUES ("77db496f-4adc-4e19-a9aa-287a3f29181b",

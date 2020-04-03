@@ -54,11 +54,14 @@ public class ApplicationConnection extends Thread {
             // main loop
             while (true) {
                 try {
+                	System.err.println("Waiting for inbound message");
                     String msg = in.readLine();
+                    System.err.printf("Message received: %s\n", msg);
                     if ( null == msg ) continue;
                     
                     // data arrives in a comma separated list
                     IMessage data = Message.deserialize(msg);
+                    System.err.printf("Message ID: %d\n", data.getId());
                     
                     // work out the data type of the incoming message
                     // and set the action (run()) to be carried out

@@ -70,7 +70,10 @@ INSERT INTO SM_ACT
 	VALUES ("e12bffcc-be81-4ec9-beea-c00244afe48c",
 	"a1db6773-f125-4c64-a431-944db90835a5",
 	1,
-	'send UI::Reply( msg:(self.prefix + param.msg) );',
+	'LOG::LogInfo( message:"Request received: " + param.msg );
+LOG::LogInfo( message:"Sending reply." );
+send UI::Reply( msg:(self.prefix + param.msg) );
+LOG::LogInfo( message:"Reply sent." );',
 	'',
 	0);
 INSERT INTO SM_TAH
