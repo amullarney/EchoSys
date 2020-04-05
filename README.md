@@ -6,6 +6,7 @@ There are four Eclipse projects:
 - Echo:  Modeled application (xtUML project)
 - EchoUI:  Modeled shell component representing external GUI (xtUML project)
 - EchoSystem:  Modeled deployment of Echo and EchoUI (xtUML project)
+
 After cloning the repository, import all four projects.  Then, import the Ciera runtine.
 ## Build
 Build the system by executing `mvn install` at the top level (EchoSys).
