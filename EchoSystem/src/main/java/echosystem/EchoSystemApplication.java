@@ -113,14 +113,8 @@ public class EchoSystemApplication implements IApplication {
     }
     
     @GetMapping( "/Request" )
-    public String Request( @RequestParam( value = "msg", defaultValue = "Hey you..." ) String msg ) {
-    	try {
-    	  EchoUI().App().Request( msg );
-    	}
-    	catch ( Exception e ) {
-      	  System.out.printf( "Exception, %s, in Request()\n", e );    			
-    	}
-    	return String.format( "Request received." );
+    public String Request( @RequestParam( value = "msg", defaultValue = "Default message" ) String msg ) {
+    	return String.format( "@GetMapping: Request received: %s.", msg );
     }
 
 }

@@ -23,19 +23,41 @@ import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.Properties;
 import echoui.shared.IEUI;
+import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.util.HtmlUtils;
+import echosystem.RequestMessage;
+import echosystem.ReplyMessage;
 
 public class EchoUI extends Component<EchoUI> {
+	
+	private static EchoUI singleton;  // @TODO this is a hack.
 
     public EchoUI(IApplication app, IRunContext runContext, int populationId) {
         super(app, runContext, populationId);
 
         LOG = null;
         EchoUIApp = null;
+        singleton = this;
+    }
+    
+    public static EchoUI singleton() {
+    	return singleton;
     }
 
     // domain functions
     public void Reply( final String p_msg ) throws XtumlException {
-      // @TODO send reply to client
+    	try {
+          ReplyMessage message = SendReplyMessage( p_msg );
+    	} catch ( Exception e ) {}
+    }
+    
+    // Spring WebSocket interface for outgoing message from application
+    @SendTo( "/topic/reply" )
+    public ReplyMessage SendReplyMessage ( String msg ) throws Exception {
+    	System.out.printf( "@SendTo: %s\n", msg );
+        return new ReplyMessage( msg );
     }
 
     
@@ -107,3 +129,6 @@ public class EchoUI extends Component<EchoUI> {
     }
     
 }
+
+
+
