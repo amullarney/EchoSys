@@ -26,10 +26,14 @@ public class EchoSystemApplication implements IApplication {
 
     private IComponent<?>[] components;
     private ApplicationExecutor[] executors;
+    private static EchoSystemApplication singleton;  // @TODO: this is a hack
 
     public EchoSystemApplication() {
+    	singleton = this;
         components = new IComponent<?>[2];
         executors = new ApplicationExecutor[1];
+        setup( null, null );
+        initialize();
     }
 
     @Override
@@ -103,21 +107,19 @@ public class EchoSystemApplication implements IApplication {
     }
 
     public static void main( String[] args ) {
-        IApplication app = new EchoSystemApplication();
-        app.setup( args, null );
-        if ( Arrays.asList(args).contains("-v") || Arrays.asList(args).contains("--version") ) {
-            app.printVersions();
-        }
-        else {
-            app.initialize();
-            System.out.printf("Invoking SpringApplication.run()\n");
-            SpringApplication.run( EchoSystemApplication.class, args );             
-            app.start();
-        }
+        System.out.printf("Invoking SpringApplication.run()\n");
+        SpringApplication.run( EchoSystemApplication.class );        
+        singleton.start();
     }
     
     @GetMapping( "/Request" )
-    public String Request( String msg ) {
+    public String Request( @RequestParam( value = "msg", defaultValue = "Hey you..." ) String msg ) {
+    	try {
+    	  EchoUI().App().Request( msg );
+    	}
+    	catch ( Exception e ) {
+      	  System.out.printf( "Exception, %s, in Request()\n", e );    			
+    	}
     	return String.format( "Request received." );
     }
 

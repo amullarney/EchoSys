@@ -58,6 +58,22 @@ INSERT INTO PE_PE
 	"c9f83b2b-40b3-4ec1-bd4e-0af84d8a34a1",
 	"00000000-0000-0000-0000-000000000000",
 	1);
+INSERT INTO S_SYNC
+	VALUES ("6c4dd3bc-8ef4-4ba8-af94-57ad885faf93",
+	"00000000-0000-0000-0000-000000000000",
+	'Test',
+	'',
+	'send App::Request( msg:"Hey you..." );',
+	"ba5eda7a-def5-0000-0000-000000000000",
+	1,
+	'',
+	0);
+INSERT INTO PE_PE
+	VALUES ("6c4dd3bc-8ef4-4ba8-af94-57ad885faf93",
+	1,
+	"c9f83b2b-40b3-4ec1-bd4e-0af84d8a34a1",
+	"00000000-0000-0000-0000-000000000000",
+	1);
 INSERT INTO PE_PE
 	VALUES ("c9f83b2b-40b3-4ec1-bd4e-0af84d8a34a1",
 	1,
