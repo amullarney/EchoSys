@@ -14,19 +14,15 @@ import io.ciera.runtime.summit.exceptions.XtumlException;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
 
 @SpringBootApplication
-@RestController
 public class EchoSystemApplication implements IApplication {
 
     private IComponent<?>[] components;
     private ApplicationExecutor[] executors;
-    private static EchoSystemApplication singleton;  // @TODO: this is a hack
+    private static EchoSystemApplication singleton;  // @TODO: this is a hack to produce a bean
 
     public EchoSystemApplication() {
     	singleton = this;
@@ -107,14 +103,7 @@ public class EchoSystemApplication implements IApplication {
     }
 
     public static void main( String[] args ) {
-        System.out.printf("Invoking SpringApplication.run()\n");
-        SpringApplication.run( EchoSystemApplication.class );        
+        SpringApplication.run( EchoSystemApplication.class, args );
         singleton.start();
     }
-    
-    @GetMapping( "/Request" )
-    public String Request( @RequestParam( value = "msg", defaultValue = "Default message" ) String msg ) {
-    	return String.format( "@GetMapping: Request received: %s.", msg );
-    }
-
 }

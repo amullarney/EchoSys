@@ -9,7 +9,7 @@ function setConnected(connected) {
     else {
         $("#conversation").hide();
     }
-    $("#reply").html("");
+    $("#replies").html("");
 }
 
 function connect() {
@@ -18,7 +18,7 @@ function connect() {
     stompClient.connect({}, function (frame) {
         setConnected(true);
         console.log('Connected: ' + frame);
-        stompClient.subscribe('/topic/reply', function (reply) {
+        stompClient.subscribe('/topic/replies', function (reply) {
             showReply(JSON.parse(reply.body).content);
         });
     });
@@ -33,11 +33,11 @@ function disconnect() {
 }
 
 function sendRequest() {
-    stompClient.send("/app/Request", {}, JSON.stringify({'message': $("#message").val()}));
+    stompClient.send("/app/Request", {}, JSON.stringify({'msg': $("#msg").val()}));
 }
 
 function showReply(message) {
-    $("#reply").append("<tr><td>" + message + "</td></tr>");
+    $("#replies").append("<tr><td>" + message + "</td></tr>");
 }
 
 $(function () {

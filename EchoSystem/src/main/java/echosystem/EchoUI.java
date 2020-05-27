@@ -29,6 +29,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.util.HtmlUtils;
 import echosystem.RequestMessage;
 import echosystem.ReplyMessage;
+import echosystem.UIMsgController;
 
 public class EchoUI extends Component<EchoUI> {
 	
@@ -49,16 +50,10 @@ public class EchoUI extends Component<EchoUI> {
     // domain functions
     public void Reply( final String p_msg ) throws XtumlException {
     	try {
-          ReplyMessage message = SendReplyMessage( p_msg );
+          ReplyMessage message = UIMsgController.Singleton().SendReplyMessage( p_msg );
     	} catch ( Exception e ) {}
     }
-    
-    // Spring WebSocket interface for outgoing message from application
-    @SendTo( "/topic/reply" )
-    public ReplyMessage SendReplyMessage ( String msg ) throws Exception {
-    	System.out.printf( "@SendTo: %s\n", msg );
-        return new ReplyMessage( msg );
-    }
+
 
     
     // relates and unrelates
