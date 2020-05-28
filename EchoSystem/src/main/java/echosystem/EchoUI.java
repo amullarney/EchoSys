@@ -50,7 +50,7 @@ public class EchoUI extends Component<EchoUI> {
     // domain functions
     public void Reply( final String p_msg ) throws XtumlException {
     	try {
-          ReplyMessage message = UIMsgController.Singleton().SendReplyMessage( p_msg );
+          UIMsgController.Singleton().SendReplyMessage( p_msg );
     	} catch ( Exception e ) {}
     }
 

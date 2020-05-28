@@ -24,9 +24,11 @@ import java.net.UnknownHostException;
 import java.util.Properties;
 import echoui.shared.IEUI;
 import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
-import org.springframework.messaging.handler.annotation.Payload;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.util.HtmlUtils;
 import echosystem.RequestMessage;
 import echosystem.ReplyMessage;
@@ -36,8 +38,12 @@ import echosystem.EchoUI;
 public class UIMsgController {
 	private static UIMsgController singleton;  // @TODO this is a hack
 	
-	public UIMsgController() {
+	private SimpMessagingTemplate template;  
+	
+	@Autowired
+	public UIMsgController( SimpMessagingTemplate template ) {
 		singleton = this;
+		this.template = template;
 	}
 	
 	public static UIMsgController Singleton() {
@@ -45,25 +51,20 @@ public class UIMsgController {
 	}
 	
     @MessageMapping( "/Request" )
-    @SendTo( "/topic/replies" )
-    public ReplyMessage request( RequestMessage message ) throws Exception {
+    public void request( RequestMessage message ) throws Exception {
     	System.out.printf( "UIMsgController: \n" );
     	System.out.printf( "message: %s\n", message.getMsg() );
     	try {
-      	  // EchoUI.singleton().App().Request( message );
+      	  EchoUI.singleton().App().Request( message.getMsg() );
       	}
       	catch ( Exception e ) {
         	  System.out.printf( "Exception, %s, in Request()\n", e );    			
       	}
-    	Thread.sleep( 1000 );
-    	ReplyMessage rmsg = new ReplyMessage( "Echo: " + HtmlUtils.htmlEscape( message.getMsg() ) );
-    	System.out.printf( "Reply message: %s\n", rmsg.getContent() );
-    	return rmsg;
     }
     
-    // @SendTo( "/topic/replies" )
-    public ReplyMessage SendReplyMessage ( String msg ) throws Exception {
-        // System.out.printf( "@SendTo: %s\n", msg );
-        return new ReplyMessage( msg );
+    public void SendReplyMessage ( String msg ) throws Exception {
+    	ReplyMessage rmsg = new ReplyMessage( HtmlUtils.htmlEscape( msg ) );
+        System.out.printf( "Sending reply: %s\n", rmsg.getContent() );
+        this.template.convertAndSend( "/topic/replies", rmsg );
     }
 }
