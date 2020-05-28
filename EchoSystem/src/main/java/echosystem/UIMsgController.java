@@ -65,6 +65,11 @@ public class UIMsgController {
     public void SendReplyMessage ( String msg ) throws Exception {
     	ReplyMessage rmsg = new ReplyMessage( HtmlUtils.htmlEscape( msg ) );
         System.out.printf( "Sending reply: %s\n", rmsg.getContent() );
-        this.template.convertAndSend( "/topic/replies", rmsg );
+        String topic = "/topic/replies";
+        if ( msg.contains( "north") )
+        	topic = "/topic/replies/north";
+        else if  ( msg.contains( "south" ) )
+            topic = "/topic/replies/south";
+        this.template.convertAndSend( topic, rmsg );
     }
 }

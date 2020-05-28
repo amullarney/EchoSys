@@ -18,6 +18,9 @@ function connect() {
     stompClient.connect({}, function (frame) {
         setConnected(true);
         console.log('Connected: ' + frame);
+        stompClient.subscribe('/topic/replies/south', function (reply) {
+            showReply(JSON.parse(reply.body).content);
+        });
         stompClient.subscribe('/topic/replies', function (reply) {
             showReply(JSON.parse(reply.body).content);
         });
