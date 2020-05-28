@@ -24,6 +24,7 @@ import java.net.UnknownHostException;
 import java.util.Properties;
 import echoui.shared.IEUI;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +39,8 @@ import echosystem.EchoUI;
 public class UIMsgController {
 	private static UIMsgController singleton;  // @TODO this is a hack
 	
-	private SimpMessagingTemplate template;  
-	
-	@Autowired
-	public UIMsgController( SimpMessagingTemplate template ) {
+	public UIMsgController() {
 		singleton = this;
-		this.template = template;
 	}
 	
 	public static UIMsgController Singleton() {
@@ -62,9 +59,10 @@ public class UIMsgController {
       	}
     }
     
-    public void SendReplyMessage ( String msg ) throws Exception {
+    @SendTo( "/topic/replies" )
+    public ReplyMessage SendReplyMessage ( String msg ) throws Exception {
     	ReplyMessage rmsg = new ReplyMessage( HtmlUtils.htmlEscape( msg ) );
         System.out.printf( "Sending reply: %s\n", rmsg.getContent() );
-        this.template.convertAndSend( "/topic/replies", rmsg );
+        return rmsg;
     }
 }
