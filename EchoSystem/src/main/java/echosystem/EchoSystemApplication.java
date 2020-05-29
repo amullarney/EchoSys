@@ -12,16 +12,17 @@ import io.ciera.runtime.summit.application.tasks.HaltExecutionTask;
 import io.ciera.runtime.summit.components.IComponent;
 import io.ciera.runtime.summit.exceptions.XtumlException;
 
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Arrays;
 
+@Controller
 @SpringBootApplication
-@RestController
 public class EchoSystemApplication implements IApplication {
 
     private IComponent<?>[] components;
@@ -113,14 +114,16 @@ public class EchoSystemApplication implements IApplication {
     }
     
     @GetMapping( "/Request" )
-    public String Request( @RequestParam( value = "msg", defaultValue = "Hey you..." ) String msg ) {
+    public String Request( 
+      @RequestParam( value = "msg", required=false, defaultValue = "Default message." ) String msg,
+      Model model ) {
+    	model.addAttribute( "msg", msg );
     	try {
     	  EchoUI().App().Request( msg );
     	}
     	catch ( Exception e ) {
       	  System.out.printf( "Exception, %s, in Request()\n", e );    			
     	}
-    	return String.format( "Request received." );
+    	return String.format( "request" );  // return name of HTML template
     }
-
 }
