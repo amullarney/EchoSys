@@ -21,7 +21,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Arrays;
 
-@Controller
 @SpringBootApplication
 public class EchoSystemApplication implements IApplication {
 
@@ -111,19 +110,5 @@ public class EchoSystemApplication implements IApplication {
         System.out.printf("Invoking SpringApplication.run()\n");
         SpringApplication.run( EchoSystemApplication.class );        
         singleton.start();
-    }
-    
-    @GetMapping( "/Request" )
-    public String Request( 
-      @RequestParam( value = "msg", required=false, defaultValue = "Default message." ) String msg,
-      Model model ) {
-    	model.addAttribute( "msg", msg );
-    	try {
-    	  EchoUI().App().Request( msg );
-    	}
-    	catch ( Exception e ) {
-      	  System.out.printf( "Exception, %s, in Request()\n", e );    			
-    	}
-    	return String.format( "request" );  // return name of HTML template
     }
 }

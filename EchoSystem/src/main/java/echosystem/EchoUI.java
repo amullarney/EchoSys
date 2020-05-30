@@ -23,19 +23,32 @@ import java.net.SocketTimeoutException;
 import java.net.UnknownHostException;
 import java.util.Properties;
 import echoui.shared.IEUI;
+import echosystem.UIMsgController;
 
 public class EchoUI extends Component<EchoUI> {
+	
+	private static EchoUI singleton;  // @TODO hack
 
     public EchoUI(IApplication app, IRunContext runContext, int populationId) {
         super(app, runContext, populationId);
 
         LOG = null;
         EchoUIApp = null;
+        this.singleton = this;
+    }
+    
+    public static EchoUI Singleton() {
+    	return singleton;
     }
 
     // domain functions
     public void Reply( final String p_msg ) throws XtumlException {
-      // @TODO send reply to client
+      try {
+        UIMsgController.SendReplyMessage( p_msg );
+      }
+      catch ( Exception e ) {
+        System.out.printf( "Exception, %s, in Reply()\n", e );
+      }
     }
 
     
